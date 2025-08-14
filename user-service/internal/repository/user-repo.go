@@ -47,13 +47,9 @@ type UserRepositoryInterface interface {
 
 }
 
-
-
-
 type UserRepository struct {
 	collection *mongo.Collection
 }
-
 
 
 func NewUserRepository() UserRepositoryInterface {
@@ -61,8 +57,6 @@ func NewUserRepository() UserRepositoryInterface {
 		collection: db.Client.Database("test").Collection("users"),
 	}
 }
-
-
 
 func (repo *UserRepository) CreateUser(ctx context.Context, user *model.User)  error {
 	if user.Email == "" || user.Phone == "" {
@@ -92,7 +86,6 @@ func (repo *UserRepository) CreateUser(ctx context.Context, user *model.User)  e
 
 }
 
-
 func (repo *UserRepository) FindUserByID(ctx context.Context, id primitive.ObjectID) (*model.User, error) {
 	if id.IsZero(){
 		return nil, ErrInvalidUserID
@@ -113,7 +106,6 @@ func (repo *UserRepository) FindUserByID(ctx context.Context, id primitive.Objec
 
 }
 
-
 func (repo *UserRepository) FindUserByEmail(ctx context.Context, email string) (*model.User, error) {
 	var user model.User
 
@@ -127,9 +119,6 @@ func (repo *UserRepository) FindUserByEmail(ctx context.Context, email string) (
 
 	return &user, nil
 }
-
-
-
 
 func (repo *UserRepository) AddBookingByEmail(ctx context.Context, email string, booking_id primitive.ObjectID) error {
 
@@ -150,8 +139,6 @@ func (repo *UserRepository) AddBookingByEmail(ctx context.Context, email string,
 	
 	return nil
 }
-
-
 
 
 func (repo *UserRepository) DeleteBookingByEmail(ctx context.Context, email string, booking_id primitive.ObjectID) error {

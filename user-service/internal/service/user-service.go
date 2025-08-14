@@ -7,16 +7,16 @@ import (
 	"user-service/internal/model"
 	"user-service/internal/repository"
 	"user-service/pkg/utils/token"
+	"user-service/pkg/utils/redis"
 )
 
 
 var (
 
 	ErrEmptyRequest = fmt.Errorf("no email/phone")
+	ErrInternalServer = fmt.Errorf("internal server error")
 
 )
-
-
 
 
 type UserService struct {
@@ -24,14 +24,11 @@ type UserService struct {
 }
 
 
-
 func NewUserService() *UserService {
 	return &UserService{
 		User_repo: repository.NewUserRepository(),
 	}
 }
-
-
 
 func (s *UserService) RegisterUser(user *model.User) error {
 	if user.Email == "" && user.Phone == "" {
@@ -49,8 +46,6 @@ func (s *UserService) RegisterUser(user *model.User) error {
 	return nil
 }
 
-
-
 func (s *UserService) LoginUser(email,password string) (string,error) {
 	if email == "" && password == "" {
 		return "",ErrEmptyRequest
@@ -64,13 +59,22 @@ func (s *UserService) LoginUser(email,password string) (string,error) {
 	}
 
 
-	token, err := token.Sign(res.ID.Hex(), res.Email)
+	token, err := token.Sign(*res)
 	if err != nil{
 		return "",err
+	}
+
+	ctx, cancel = context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	if err := rdb.Client.Set(ctx,token,1,30*time.Second).Err(); err!=nil {
+		return "", ErrInternalServer
 	}
 
 	return token,nil
 
 }
 
-
+func (s *UserService) ChangePassword(email, password string) error {
+	return nil
+}

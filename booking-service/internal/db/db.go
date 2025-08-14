@@ -1,26 +1,25 @@
 package db
 
 import (
-	"context"
 	"log"
 	"os"
+	"context"
 	"time"
-	"user-service/internal/config"
+	"booking-service/internal/config"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-)
-
-var  (
-
-	DbConnectTimeout time.Duration = 10*time.Second
-
-	Client *mongo.Client = NewDbClient()
 
 )
 
+var (
+	DbConnectTimeout time.Duration = 10 * time.Second
 
-func NewDbClient() *mongo.Client {
+	Client *mongo.Client = NewMongoClient()
+)
+
+
+func NewMongoClient() *mongo.Client {
 	config.LoadEnv()
 	
 	uri := os.Getenv("URI")
@@ -44,4 +43,3 @@ func NewDbClient() *mongo.Client {
 
 	return client
 }
-

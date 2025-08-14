@@ -8,7 +8,6 @@ import (
 	"user-service/internal/service"
 	"user-service/internal/model"
 
-
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"github.com/go-playground/validator/v10"
@@ -74,8 +73,6 @@ func (h *userHandler) GetUserByID() gin.HandlerFunc {
 }
 
 
-
-
 func (h *userHandler) SignUp() gin.HandlerFunc {
 	return func(c *gin.Context){
 		var user model.User
@@ -104,7 +101,7 @@ func (h *userHandler) Login() gin.HandlerFunc {
 
 		type user_details struct {
 			Email		string	`bson:"email" json:"email" validate:"required,email"`
-			Password   	string  `bson:"password" json:"-" validate:"required,min=8,alphanum"`
+			Password   	string  `bson:"password" json:"password" validate:"required,min=8,alphanum"`
 		}
 
 		var user user_details
@@ -127,8 +124,7 @@ func (h *userHandler) Login() gin.HandlerFunc {
 			return
 		}
 
+		fmt.Printf("User Loggined In:%s\n",token);
 		c.JSON(http.StatusOK, gin.H{"error": nil, "token": token})
-
-	
 	}
 }

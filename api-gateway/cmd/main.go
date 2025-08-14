@@ -39,7 +39,7 @@ func main(){
 
 	v1.GET("/users")
 
-	v1.GET("/book")
+	v1.GET("/movie")
 
 
 	log.Fatal(router.Run(fmt.Sprintf(":"+PORT)))

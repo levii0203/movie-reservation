@@ -17,6 +17,8 @@ func UserRoutes(r *gin.Engine){
 
 
 	r.GET("/:id",Handler.GetUserByID())
+	r.POST("/signup",Handler.SignUp())
+	r.POST("/login",Handler.Login())
 
 
 }
