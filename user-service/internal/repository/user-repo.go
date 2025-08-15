@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 	"time"
-	"user-service/internal/db"
-	"user-service/internal/model"
+	"github.com/levii0203/user-service/internal/db"
+	"github.com/levii0203/user-service/internal/model"
 
 
 	"github.com/go-playground/validator/v10"

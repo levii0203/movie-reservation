@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 	"os"
-	"user-service/internal/config"
-	"user-service/pkg/middleware/cors"
-	"user-service/pkg/middleware/route"
-	"user-service/pkg/middleware/rate-limiter"
-	"user-service/pkg/utils/redis"
+	"github.com/levii0203/user-service/internal/config"
+	"github.com/levii0203/user-service/pkg/middleware/cors"
+	"github.com/levii0203/user-service/pkg/middleware/route"
+	"github.com/levii0203/user-service/pkg/middleware/rate-limiter"
+	"github.com/levii0203/user-service/pkg/utils/redis"
 
 	"github.com/gin-gonic/gin"
 )

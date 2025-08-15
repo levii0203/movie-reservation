@@ -1,4 +1,4 @@
-module apigateway
+module github.com/levii0203/apigateway
 
 go 1.23.4
 

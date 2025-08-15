@@ -2,8 +2,8 @@ package limiter
 
 import (
 	"fmt"
-	"user-service/pkg/utils/redis"
-	"user-service/pkg/utils/token"
+	"github.com/levii0203/user-service/pkg/utils/redis"
+	"github.com/levii0203/user-service/pkg/utils/token"
 
 	"github.com/gin-gonic/gin"
 )

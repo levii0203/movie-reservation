@@ -1,0 +1,29 @@
+#API GATEWAY
+#github.com/levii0203/api-gateway
+
+#env
+api-gateway/.env
+
+
+
+#USER SERVICE
+#github.com/levii0203/user-service
+
+#env
+user-service/.env
+
+
+
+#MOVIE SERVICE
+#github.com/levii0203/movie-service
+
+#env
+movie-service/.env
+
+
+
+#BOOKING SERVICE
+#github.com/levii0203/booking-service
+
+#env
+booking-service/.env

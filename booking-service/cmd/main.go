@@ -3,10 +3,10 @@ package main
 import (
 	"os"
 	"fmt"
-	"booking-service/internal/config"
-	"booking-service/pkg/middleware/routes"
-	"booking-service/pkg/utils/rabbitmq"
-	rdb "booking-service/pkg/utils/redis"
+	"github.com/levii0203/booking-service/internal/config"
+	"github.com/levii0203/booking-service/pkg/middleware/routes"
+	"github.com/levii0203/booking-service/pkg/utils/rabbitmq"
+	rdb "github.com/levii0203/booking-service/pkg/utils/redis"
 
 	"github.com/gin-gonic/gin"
 )
@@ -14,8 +14,9 @@ import (
 func main(){
 	config.LoadEnv()
 
-	defer rabbitmq.Booking.Close()
-	defer rabbitmq.AmqpClient.Close()
+	// initializing rabbitmq client
+	rabbitmq.Init()
+	defer rabbitmq.CLIENT.Close()
 
 	gin.ForceConsoleColor()
 	gin.SetMode(gin.ReleaseMode)
@@ -26,6 +27,7 @@ func main(){
 
 	routes.LobbyRoute(router)
 
+	//Pinging the redis
 	rdb.Ping()
 
 	router.Run(fmt.Sprintf(":%s",os.Getenv("PORT")))

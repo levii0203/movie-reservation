@@ -2,8 +2,8 @@ package handler
 
 import (
 	"fmt"
-	"movie-service/internal/model"
-	"movie-service/internal/service"
+	"github.com/levii0203/movie-service/internal/model"
+	"github.com/levii0203/movie-service/internal/service"
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
@@ -50,7 +50,7 @@ func (h *MovieHandler) RegisterMovie() gin.HandlerFunc {
 
 		id,err := h.movie_service.PutMovie(&movie)
 		if err!=nil {
-			c.JSON(300,gin.H{"error":ErrInternalServerError.Error()})
+			c.JSON(300,gin.H{"error":err.Error()})
 			return
 		}
 
@@ -99,6 +99,5 @@ func (h *MovieHandler) DeleteByID() gin.HandlerFunc {
 		}
 
 		c.JSON(200,gin.H{"ok":true})
-
 	}
 }

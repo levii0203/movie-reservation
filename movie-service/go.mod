@@ -1,4 +1,4 @@
-module movie-service
+module github.com/levii0203/movie-service
 
 go 1.23.4
 

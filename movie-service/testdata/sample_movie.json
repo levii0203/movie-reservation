@@ -1,0 +1,22 @@
+{
+  "id": "64d8f1bcf9a2b5341a4e8c3d",
+  "title": "Inception",
+  "genre": ["Sci-Fi", "Thriller"],
+  "rating": 8.8,
+  "available": true,
+  "release_date": "2010-07-16",
+  "filled_seats": ["A1", "A2", "B5"],
+  "available_seats": ["A3", "A4", "B1", "B2", "B3", "B4"],
+  "created_at": "2025-08-01T10:00:00Z",
+  "updated_at": "2025-08-10T15:30:00Z",
+  "duration_in_minutes": 148,
+  "hall": "Hall 3",
+  "poster_url": "https://example.com/posters/inception.jpg",
+  "start": "2025-08-15T18:00:00Z",
+  "end": "2025-08-15T20:30:00Z",
+  "cast": ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Ellen Page"],
+  "cinema": "PVR Cinemas",
+  "city": "Mumbai",
+  "over": "",
+  "view_count": 1250
+}

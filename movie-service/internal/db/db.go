@@ -5,7 +5,7 @@ import (
 	"os"
 	"context"
 	"time"
-	"movie-service/internal/config"
+	"github.com/levii0203/movie-service/internal/config"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"

@@ -1,0 +1,15 @@
+.git 
+
+.gitignore
+
+api-gateway/.development.env
+
+
+movie-service/.development.env
+
+
+user-service/.development.env
+
+
+booking-service/.development.env
+

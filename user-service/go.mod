@@ -1,4 +1,4 @@
-module user-service
+module github.com/levii0203/user-service 
 
 go 1.23.4
 

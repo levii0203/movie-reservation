@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"movie-service/internal/handler"
-	"movie-service/internal/service"
+	"github.com/levii0203/movie-service/internal/handler"
+	"github.com/levii0203/movie-service/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

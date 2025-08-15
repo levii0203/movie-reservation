@@ -3,7 +3,7 @@ package token
 import (
 	"fmt"
 	"time"
-	"user-service/internal/model"
+	"github.com/levii0203/user-service/internal/model"
 
 	"github.com/golang-jwt/jwt/v5"
 )

@@ -5,7 +5,7 @@ import (
 	"context"
 	"time"
 	"strconv"
-	"user-service/pkg/utils/token"
+	"github.com/levii0203/user-service/pkg/utils/token"
 
 	"github.com/redis/go-redis/v9"
 

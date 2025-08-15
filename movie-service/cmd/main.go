@@ -1,14 +1,12 @@
 package main
 
 import (
-	"fmt"
-	"log"
-	"movie-service/internal/config"
-	"movie-service/pkg/middleware/cors"
-	"movie-service/pkg/middleware/routes"
-	"movie-service/pkg/utils/rabbitmq"
 	"os"
-	"sync"
+	"fmt"
+	"github.com/levii0203/movie-service/internal/config"
+	"github.com/levii0203/movie-service/pkg/middleware/cors"
+	"github.com/levii0203/movie-service/pkg/middleware/routes"
+	"github.com/levii0203/movie-service/pkg/utils/rabbitmq"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,6 +14,9 @@ import (
 
 func main(){
 	config.LoadEnv()
+
+	rabbitmq.Init()
+	defer rabbitmq.CLIENT.Close()
 
 	gin.ForceConsoleColor()
 	gin.SetMode(gin.ReleaseMode)
@@ -28,16 +29,5 @@ func main(){
 
 	routes.MovieRoute(router)
 
-	var wg sync.WaitGroup
-	wg.Add(1)
-
-	go func(){
-		defer wg.Done()
-		rabbitmq.KeepConsumingSeatRequests()
-
-	}()
-
 	router.Run(fmt.Sprintf(":%s",os.Getenv("PORT")))
-	
-	wg.Wait()
 }

@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 	"time"
-	"user-service/internal/service"
-	"user-service/internal/model"
+	"github.com/levii0203/user-service/internal/service"
+	"github.com/levii0203/user-service/internal/model"
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson/primitive"

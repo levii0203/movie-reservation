@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 	"time"
-	"user-service/internal/config"
+	"github.com/levii0203/user-service/internal/config"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"

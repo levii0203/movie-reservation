@@ -3,13 +3,13 @@ package main
 import (
 	"fmt"
 	"log"
-	"apigateway/pkg/middleware"
+	"github.com/levii0203/apigateway/pkg/middleware"
 
 	"github.com/gin-gonic/gin"
 )
 
 
-const PORT string = "3000"
+const PORT string = "6000"
 
 
 

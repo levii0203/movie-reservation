@@ -2,8 +2,8 @@ package routes
 
 import (
 
-	"user-service/internal/handler"
-	"user-service/internal/service"
+	"github.com/levii0203/user-service/internal/handler"
+	"github.com/levii0203/user-service/internal/service"
 	
 	"github.com/gin-gonic/gin"
 

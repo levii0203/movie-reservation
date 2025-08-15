@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 	"time"
-	"user-service/internal/model"
-	"user-service/internal/repository"
-	"user-service/pkg/utils/token"
-	"user-service/pkg/utils/redis"
+	"github.com/levii0203/user-service/internal/model"
+	"github.com/levii0203/user-service/internal/repository"
+	"github.com/levii0203/user-service/pkg/utils/token"
+	"github.com/levii0203/user-service/pkg/utils/redis"
 )
 
 

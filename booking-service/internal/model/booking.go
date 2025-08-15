@@ -17,7 +17,12 @@ type Booking struct {
 }
 
 type SeatLock struct {
-	MovieID string
-	UserID string
-	Seat string
+	MovieID string 	`json:"movie_id" validate:"required"`
+	UserID string	`json:"user_id" validate:"required"`
+	Seat string		`json:"seat" validate:"required"`
+}
+
+type SeatRedis struct {
+	UserID string	`json:"user_id" validate:"required"`
+	Seat string		`json:"seat" validate:"required"`
 }

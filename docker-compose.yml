@@ -1,0 +1,38 @@
+version: "3.9"
+services:
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "6000:8080"
+
+  movie-service:
+    build: ./movie-service
+    ports:
+      - "7050:8080"
+    depends_on:
+      - rabbitmq
+
+  booking-service:
+    build: ./seat-service
+    ports:
+      - "3000:8080"
+    depends_on:
+      - redis
+      - rabbitmq
+
+  user-service:
+    build: ./user-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7
+    ports:
+      - "5000:6379"
+  
+  rabbitmq:
+    image: rabbitmq
+    ports:
+    - "5672:5672"

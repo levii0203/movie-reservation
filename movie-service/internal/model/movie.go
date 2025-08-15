@@ -2,15 +2,17 @@ package model
 
 import (
 	"time"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 
 type Movie struct {
-	ID          		string `json:"id" bson:"_id"`
+	ID          		primitive.ObjectID `json:"id,omitempty" bson:"_id,omitempty"`
 	Title	   			string `json:"title" bson:"title" validate:"required"`
 	Genre	  	  	  []string `json:"genre,omitempty" bson:"genre"`
 	Rating	   	       float64 `json:"rating" bson:"rating,omitempty" validate:"gte=1.0,lte=10"`
-	Available     	      bool `json:"available" bson:"available" validate:"default=true"`
+	Available     	      bool `json:"available" bson:"available" validate:""`
 	ReleaseDate 		string `json:"release_date" bson:"release_date" validate:"required"`
 	FilledSeats       []string `json:"filled_seats,omitempty" bson:"filled_seats,omitempty"`
 	AvailableSeats    []string `json:"available_seats,omitempty" bson:"available_seats,omitempty"`
@@ -27,3 +29,4 @@ type Movie struct {
 	Over				string `json:"over,omitempty" bson:"over,omitempty"`
 	ViewCount			   int `json:"view_count,omitempty" bson:"view_count,omitempty" validate:"gte=0"`
 }
+

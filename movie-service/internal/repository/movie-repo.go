@@ -4,8 +4,8 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"movie-service/internal/db"
-	"movie-service/internal/model"
+	"github.com/levii0203/movie-service/internal/db"
+	"github.com/levii0203/movie-service/internal/model"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -47,6 +47,9 @@ type MovieRepository interface {
 
 	 
 	 FetchAllByNameAndCity(ctx context.Context, name string, city string) ([]model.Movie,error)
+
+
+	 UpdateFilledMovie(ctx context.Context, movieID primitive.ObjectID, seat string) error
 	
 }
 
@@ -66,10 +69,11 @@ func (repo *movieRepository) GetMovieByID(ctx context.Context, id primitive.Obje
 	if id.IsZero() {
 		return nil, ErrNoID
 	}
+	fmt.Println(id)
 
 	var movie model.Movie
-
-	res := repo.movieCollection.FindOne(ctx,bson.M{"_id":id}).Decode(&movie)
+	movie_id := id.Hex()
+	res := repo.movieCollection.FindOne(ctx,bson.M{"_id":movie_id}).Decode(&movie)
 	if res != nil {
 		if res == mongo.ErrNoDocuments {
 			return nil,ErrMovieNotFound
@@ -98,13 +102,13 @@ func (repo *movieRepository) InsertMovie(ctx context.Context, movie *model.Movie
 	if err!=nil {
 		return "", err
 	}
-
+	movie.ID = primitive.NilObjectID
 	res,err:= repo.movieCollection.InsertOne(ctx, movie)
 	if err!=nil {
 		return "",err
 	}
 
-	return fmt.Sprintf("%v",res.InsertedID),nil
+	return res.InsertedID.(primitive.ObjectID).Hex(),nil
 }
 
 // for updating any movie parameter 
@@ -230,4 +234,24 @@ func (repo *movieRepository) FetchAllByNameAndCity(ctx context.Context, name str
 	curr.All(ctx_cur,&movies)
 
 	return movies,nil
+}
+
+func (repo *movieRepository) UpdateFilledMovie(ctx context.Context, movieID primitive.ObjectID, seat string) error {
+	if movieID.IsZero() || seat=="" {
+		return ErrNoID
+	}
+
+	id := movieID.Hex()
+	update := bson.M{"$addToSet":bson.M{"filled_seats":seat}}
+	err := repo.movieCollection.FindOneAndUpdate(ctx,bson.M{"_id":id}, update )
+	if err.Err()!=nil {
+		if errors.Is(err.Err(),mongo.ErrNilDocument) {
+			return ErrMovieNotFound
+		} else if errors.Is(err.Err(),mongo.ErrClientDisconnected){
+			return ErrClientDisconnected
+		}
+		return fmt.Errorf("internal server error")
+	}
+
+	return nil
 }

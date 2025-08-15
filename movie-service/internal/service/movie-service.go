@@ -2,8 +2,8 @@ package service
 
 import (
 	"context"
-	"movie-service/internal/model"
-	"movie-service/internal/repository"
+	"github.com/levii0203/movie-service/internal/model"
+	"github.com/levii0203/movie-service/internal/repository"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
